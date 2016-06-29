@@ -1,5 +1,7 @@
+/*
+This program contains an interface having methods which impelemts all the basic queue operations 
+*/
 package imp
-
 type queue interface{
 	New() int 
 	Enqueue(e int)
@@ -9,12 +11,8 @@ type queue interface{
 	ViewPriorityQueue()
 }
 
-type Priorityqueue struct{
-  Size int
-  Max int
-  IntArray []int
-  ItemCount int
-  }
+
+
 
 
 
