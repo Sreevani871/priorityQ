@@ -1,11 +1,12 @@
-/* 
-This program calls the New method to build a priority queue of given size. Priority queue contains integer elements made lowest number has highest prioriy
+/*
+This program calls the New function to build a priority queue of given size. Priority queue contains integer elements made lowest number has highest prioriy
 */
 package main
+
 import (
-		S "github.com/Sreevani871/queue1/imp"
+	S "github.com/Sreevani871/queue1/new"
 )
-func main(){
-		var R S.Priorityqueue
-		R.New()
-	}
+
+func main() {
+	S.New() // Builds Priority Queue
+}
