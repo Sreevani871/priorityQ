@@ -3,8 +3,16 @@ This program contains the implemetntation code for all methods declared in inter
 */
 package priorityQ
 
+<<<<<<< HEAD
 import "fmt"
 
+=======
+import (
+	"fmt"
+)
+
+
+>>>>>>> 8f89f1f36b6e3ab8de9e781f85087ccb898ddf51
 type Priorityqueue struct { //Priorityqueue struct has fields where Size is PQ size,Max is no.of maximum elements,IntArray is holding elements of PQ,ItemCount is Element coutn of PQ
 	Size      int
 	Max       int
@@ -12,6 +20,7 @@ type Priorityqueue struct { //Priorityqueue struct has fields where Size is PQ s
 	ItemCount int
 }
 
+<<<<<<< HEAD
 var C Priorityqueue
 
 /*type PqInterface interface {
@@ -29,6 +38,11 @@ func (N *Priorityqueue) Enqueue(element int) int {
 		N.IntPq = make([]int, 0, 100) //Generating PQ of given size
 		N.Max = 100
 	}
+=======
+/*Method implementation for inserting element into PQ*/
+
+func (N *Priorityqueue) Enqueue(element int) {
+>>>>>>> 8f89f1f36b6e3ab8de9e781f85087ccb898ddf51
 	var i int = 0
 	if !N.IsFull() { //Checks whether queue is full or not
 		if N.ItemCount == 0 { //Inserting first element into queue
