@@ -114,12 +114,12 @@ func TestMerge(t *testing.T) {
 	for _, c := range test[0].values {
 		P1.Enqueue(c)
 	}
-	fmt.Println("P", P1.HeapSlice)
+
 	N1 := S2.New()
 	for _, c := range test[1].values {
 		N1.Enqueue(c)
 	}
-	fmt.Println("N", N1.HeapSlice)
+
 	P1.Merge(N1)
 	res := P1.PrintPQ()
 	fmt.Println(res)

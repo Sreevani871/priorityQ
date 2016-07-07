@@ -7,9 +7,9 @@ import "sort"
 /* MinHeap struct is created with appropriate fields*/
 
 type Heap struct {
-	HeapSlice []int
-	Length    int
-	Max       int
+	heapSlice []int
+	length    int
+	max       int
 }
 
 /* Method Min_heapify ensure heap is statisfying min heap property or not */
@@ -19,16 +19,16 @@ func (H *Heap) Min_heapify(i int, N int) {
 	left := 2 * i
 	right := 2*i + 1
 	var smallest int
-	if left <= N && H.HeapSlice[left] < H.HeapSlice[i] {
+	if left <= N && H.heapSlice[left] < H.heapSlice[i] {
 		smallest = left
 	} else {
 		smallest = i
 	}
-	if right <= N && H.HeapSlice[right] < H.HeapSlice[smallest] {
+	if right <= N && H.heapSlice[right] < H.heapSlice[smallest] {
 		smallest = right
 	}
 	if smallest != i {
-		H.HeapSlice[i], H.HeapSlice[smallest] = H.HeapSlice[smallest], H.HeapSlice[i]
+		H.heapSlice[i], H.heapSlice[smallest] = H.heapSlice[smallest], H.heapSlice[i]
 		H.Min_heapify(smallest, N)
 	}
 }
@@ -36,22 +36,22 @@ func (H *Heap) Min_heapify(i int, N int) {
 /* Minimum method returns minimum interger from the heap */
 
 func (H *Heap) Minimum() int {
-	return H.HeapSlice[1]
+	return H.heapSlice[1]
 }
 
 /* Method for removing elements from heap */
 
 func (H *Heap) Dequeue() int {
-	if H.Length == 0 {
-		H.HeapSlice = make([]int, 2, 100)
+	if H.length == 0 {
+		H.heapSlice = make([]int, 2, 100)
 		return -1
 	}
-	min := H.HeapSlice[1]
-	H.HeapSlice[1] = H.HeapSlice[H.Length]
-	H.Length = H.Length - 1
-	H.Min_heapify(1, H.Length)
+	min := H.heapSlice[1]
+	H.heapSlice[1] = H.heapSlice[H.length]
+	H.length = H.length - 1
+	H.Min_heapify(1, H.length)
 
-	H.HeapSlice = H.HeapSlice[:H.Length+1]
+	H.heapSlice = H.heapSlice[:H.length+1]
 
 	return min
 }
@@ -61,14 +61,14 @@ func (H *Heap) Dequeue() int {
 func (H *Heap) Decrease_value(i int, val int) int {
 
 	if i == 1 {
-		H.HeapSlice[i] = val
+		H.heapSlice[i] = val
 	} else {
-		H.HeapSlice = append(H.HeapSlice, val)
+		H.heapSlice = append(H.heapSlice, val)
 
 	}
 
-	for i > 1 && H.HeapSlice[i/2] > H.HeapSlice[i] {
-		H.HeapSlice[i/2], H.HeapSlice[i] = H.HeapSlice[i], H.HeapSlice[i/2]
+	for i > 1 && H.heapSlice[i/2] > H.heapSlice[i] {
+		H.heapSlice[i/2], H.heapSlice[i] = H.heapSlice[i], H.heapSlice[i/2]
 		i = i / 2
 	}
 	return val
@@ -78,14 +78,14 @@ func (H *Heap) Decrease_value(i int, val int) int {
 /* Method for inserting elements into the queuw */
 
 func (H *Heap) Enqueue(val int) int {
-	if H.Length == 0 {
-		H.HeapSlice = make([]int, 2, 100)
-		H.Max = 100
+	if H.length == 0 {
+		H.heapSlice = make([]int, 2, 100)
+		H.max = 100
 	}
 	if !H.IsFull() {
-		H.Length = H.Length + 1
+		H.length = H.length + 1
 
-		return H.Decrease_value(H.Length, val)
+		return H.Decrease_value(H.length, val)
 	} else {
 		return -1
 	}
@@ -94,24 +94,24 @@ func (H *Heap) Enqueue(val int) int {
 /* Method for checking whether heap is empty or not */
 
 func (H *Heap) IsEmpty() bool {
-	return H.Length == 0
+	return H.length == 0
 }
 
 /* Method for checking whether heap is full or not */
 
 func (H *Heap) IsFull() bool {
-	H.Max = 100
-	return H.Length == H.Max
+	H.max = 100
+	return H.length == H.max
 }
 
 /* Method for merging two heaps */
 
 func (Pq4 *Heap) Merge(q *Heap) {
-	Pq2 := q.HeapSlice[1:]
+	Pq2 := q.heapSlice[1:]
 	n := len(Pq2)
-	m := len(Pq4.HeapSlice)
+	m := len(Pq4.heapSlice)
 	Pq1 := make([]int, m-1, 100)
-	copy(Pq1, Pq4.HeapSlice[1:])
+	copy(Pq1, Pq4.heapSlice[1:])
 	sort.Ints(Pq2)
 	sort.Ints(Pq1)
 	m = m - 1
@@ -135,10 +135,10 @@ func (Pq4 *Heap) Merge(q *Heap) {
 			j++
 		}
 	}
-	Pq4.HeapSlice = make([]int, len(Pq3)+1, 100)
-	copy(Pq4.HeapSlice[1:], Pq3[:])
+	Pq4.heapSlice = make([]int, len(Pq3)+1, 100)
+	copy(Pq4.heapSlice[1:], Pq3[:])
 
-	Pq4.Length = len(Pq3) - 1
+	Pq4.length = len(Pq3) - 1
 }
 
 /* New() method returns struct of heap to implement all methods in interface */
@@ -151,5 +151,5 @@ func New() *Heap {
 /* Method for dispaying heap */
 
 func (H *Heap) PrintPQ() []int {
-	return H.HeapSlice
+	return H.heapSlice
 }
