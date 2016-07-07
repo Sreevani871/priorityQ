@@ -1,8 +1,10 @@
+/*Priority Queue implementation using Min-Heap */
+
 package priorityQ
 
-import "fmt"
-
 import "sort"
+
+/* MinHeap struct is created with appropriate fields*/
 
 type Heap struct {
 	HeapSlice []int
@@ -10,7 +12,7 @@ type Heap struct {
 	Max       int
 }
 
-var C Heap
+/* Method Min_heapify ensure heap is statisfying min heap property or not */
 
 func (H *Heap) Min_heapify(i int, N int) {
 
@@ -31,9 +33,13 @@ func (H *Heap) Min_heapify(i int, N int) {
 	}
 }
 
+/* Minimum method returns minimum interger from the heap */
+
 func (H *Heap) Minimum() int {
 	return H.HeapSlice[1]
 }
+
+/* Method for removing elements from heap */
 
 func (H *Heap) Dequeue() int {
 	if H.Length == 0 {
@@ -49,6 +55,9 @@ func (H *Heap) Dequeue() int {
 
 	return min
 }
+
+/* Decrease_value method is used by Enqueue method for inserting elements into the heap */
+
 func (H *Heap) Decrease_value(i int, val int) int {
 
 	if i == 1 {
@@ -65,6 +74,9 @@ func (H *Heap) Decrease_value(i int, val int) int {
 	return val
 
 }
+
+/* Method for inserting elements into the queuw */
+
 func (H *Heap) Enqueue(val int) int {
 	if H.Length == 0 {
 		H.HeapSlice = make([]int, 2, 100)
@@ -78,24 +90,30 @@ func (H *Heap) Enqueue(val int) int {
 		return -1
 	}
 }
+
+/* Method for checking whether heap is empty or not */
+
 func (H *Heap) IsEmpty() bool {
 	return H.Length == 0
 }
+
+/* Method for checking whether heap is full or not */
 
 func (H *Heap) IsFull() bool {
 	H.Max = 100
 	return H.Length == H.Max
 }
+
+/* Method for merging two heaps */
+
 func (Pq4 *Heap) Merge(q *Heap) {
 	Pq2 := q.HeapSlice[1:]
 	n := len(Pq2)
 	m := len(Pq4.HeapSlice)
 	Pq1 := make([]int, m-1, 100)
 	copy(Pq1, Pq4.HeapSlice[1:])
-	fmt.Println("two heaps:", Pq1, Pq2)
 	sort.Ints(Pq2)
 	sort.Ints(Pq1)
-	fmt.Println(Pq2, Pq1)
 	m = m - 1
 
 	i := 0
@@ -123,10 +141,14 @@ func (Pq4 *Heap) Merge(q *Heap) {
 	Pq4.Length = len(Pq3) - 1
 }
 
+/* New() method returns struct of heap to implement all methods in interface */
+
 func New() *Heap {
 
 	return &Heap{}
 }
+
+/* Method for dispaying heap */
 
 func (H *Heap) PrintPQ() []int {
 	return H.HeapSlice

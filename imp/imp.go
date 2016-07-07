@@ -1,18 +1,8 @@
 /*
-This program contains the implemetntation code for all methods declared in interface.
+This program contains the implemetntation code for all methods declared in interface.Insertion sort is used to enqueue elements into the PQ
 */
 package priorityQ
 
-<<<<<<< HEAD
-import "fmt"
-
-=======
-import (
-	"fmt"
-)
-
-
->>>>>>> 8f89f1f36b6e3ab8de9e781f85087ccb898ddf51
 type Priorityqueue struct { //Priorityqueue struct has fields where Size is PQ size,Max is no.of maximum elements,IntArray is holding elements of PQ,ItemCount is Element coutn of PQ
 	Size      int
 	Max       int
@@ -20,34 +10,14 @@ type Priorityqueue struct { //Priorityqueue struct has fields where Size is PQ s
 	ItemCount int
 }
 
-<<<<<<< HEAD
-var C Priorityqueue
-
-/*type PqInterface interface {
-	Enqueue(int) int
-	Dequeue() int
-	IsEmpty() bool
-	IsFull() bool
-	Merge(Priorityqueue)
-}*/
-
 /*Method implementation for inserting element into PQ*/
 
 func (N *Priorityqueue) Enqueue(element int) int {
-	if N.ItemCount == 0 {
-		N.IntPq = make([]int, 0, 100) //Generating PQ of given size
-		N.Max = 100
-	}
-=======
-/*Method implementation for inserting element into PQ*/
-
-func (N *Priorityqueue) Enqueue(element int) {
->>>>>>> 8f89f1f36b6e3ab8de9e781f85087ccb898ddf51
 	var i int = 0
 	if !N.IsFull() { //Checks whether queue is full or not
-		if N.ItemCount == 0 { //Inserting first element into queue
-			N.IntPq = append(N.IntPq, element)
-			N.ItemCount++ //Increasing element count
+		if N.ItemCount == 0 {
+			N.IntPq = append(N.IntPq, element) //Inserting first element into queue
+			N.ItemCount++                      //Increasing element count
 		} else { //The element to be inserted is not the first element comparision of priority takes place
 			for i = N.ItemCount - 1; i >= 0; i-- {
 				if element > N.IntPq[i] {
@@ -69,7 +39,6 @@ func (N *Priorityqueue) Enqueue(element int) {
 				N.ItemCount++
 			}
 		}
-		fmt.Println("PQ:", N.IntPq)
 
 		return element
 	} else {
@@ -84,13 +53,13 @@ func (N *Priorityqueue) Dequeue() int {
 	if !N.IsEmpty() { //Checking PQ is empty or not
 		remEle := N.IntPq[N.ItemCount-1] //cathing Removing element from the PQ
 		N.IntPq[N.ItemCount-1] = 0       //Removal of element by making value zero
-		N.ItemCount--
+		N.ItemCount--                    //Decreasing element count
 		intQ := make([]int, N.ItemCount, 100)
 		copy(intQ, N.IntPq[:N.ItemCount])
-		N.IntPq = intQ //Decreasing element count
+		N.IntPq = intQ
 		return remEle
-	} else { //Displays a message if PQ is empty
-		return -1
+	} else {
+		return -1 //Returns -1 if PQ is empty
 	}
 
 }
@@ -107,6 +76,8 @@ func (N *Priorityqueue) IsFull() bool {
 	N.Max = 100
 	return N.ItemCount == N.Max
 }
+
+/* Method implementation for merging two PQ's*/
 
 func (Pq1 *Priorityqueue) Merge(q *Priorityqueue) {
 	Pq2 := q.IntPq
