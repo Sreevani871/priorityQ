@@ -1,7 +1,7 @@
 package priorityQ
 
 import (
-	S2 "github.com/Sreevani871/priorityQ/imp"
+	S2 "github.com/Sreevani871/priorityQ/impheap"
 	"testing"
 )
 
@@ -22,10 +22,9 @@ func BenchmarkEnqueue(b *testing.B) {
 	b.SetBytes(2)
 	P := S2.New()
 	for i := 0; i < b.N; i++ {
-		for c, _ := range test[1].values {
-			P.Enqueue(c)
 
-		}
+		P.Enqueue(29)
+
 	}
 }
 
@@ -62,15 +61,41 @@ func BenchmarkIsFull(b *testing.B) {
 	}
 
 }
-func BenchmarkMerge(b *testing.B) {
-	b.SetBytes(2)
+
+func BenchmarkMinimum(b *testing.B) {
 	P := S2.New()
 	for c, _ := range test[1].values {
 		P.Enqueue(c)
 
 	}
+	for i := 0; i < b.N; i++ {
+		P.Minimum()
+
+	}
+
+}
+func BenchmarkDecrease_Value(b *testing.B) {
+	b.SetBytes(2)
+	P := S2.New()
+	for c, _ := range test[0].values {
+		P.Enqueue(c)
+
+	}
+	for i := 0; i < b.N; i++ {
+		P.Decrease_value(3, 4)
+
+	}
+
+}
+func BenchmarkMerge(b *testing.B) {
+	b.SetBytes(2)
+	P := S2.New()
+	for c, _ := range test[0].values {
+		P.Enqueue(c)
+
+	}
 	P1 := S2.New()
-	for c, _ := range test[2].values {
+	for c, _ := range test[1].values {
 		P1.Enqueue(c)
 
 	}

@@ -4,6 +4,8 @@ package priorityQ
 
 import "sort"
 
+//import "math/rand"
+
 /* MinHeap struct is created with appropriate fields*/
 
 type Heap struct {
@@ -110,17 +112,20 @@ func (Pq4 *Heap) Merge(q *Heap) {
 	Pq2 := q.heapSlice[1:]
 	n := len(Pq2)
 	m := len(Pq4.heapSlice)
-	Pq1 := make([]int, m-1, 100)
+	//fmt.Println("Not there here is actual problem")
+	Pq1 := make([]int, m-1, len(Pq4.heapSlice)+10)
+	//fmt.Println("fine")
 	copy(Pq1, Pq4.heapSlice[1:])
 	sort.Ints(Pq2)
 	sort.Ints(Pq1)
+	//fmt.Println("fine1")
 	m = m - 1
 
 	i := 0
 	j := 0
 	k := 0
-	Pq3 := make([]int, m+n, 100)
-
+	Pq3 := make([]int, m+n, m+n)
+	//fmt.Println("fine2")
 	for k < (m + n) {
 
 		if j == n || (i < m && (Pq1[i] <= Pq2[j])) {
@@ -135,7 +140,8 @@ func (Pq4 *Heap) Merge(q *Heap) {
 			j++
 		}
 	}
-	Pq4.heapSlice = make([]int, len(Pq3)+1, 100)
+	//fmt.Println("Here is the problem")
+	Pq4.heapSlice = make([]int, len(Pq3)+1, len(Pq3)+10)
 	copy(Pq4.heapSlice[1:], Pq3[:])
 
 	Pq4.length = len(Pq3) - 1
