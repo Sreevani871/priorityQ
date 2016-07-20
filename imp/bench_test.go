@@ -22,10 +22,8 @@ func BenchmarkEnqueue(b *testing.B) {
 	b.SetBytes(2)
 	P := S2.New()
 	for i := 0; i < b.N; i++ {
-		for c, _ := range test[1].values {
-			P.Enqueue(c)
+		P.Enqueue(4)
 
-		}
 	}
 }
 
@@ -76,6 +74,18 @@ func BenchmarkMerge(b *testing.B) {
 	}
 	for i := 0; i < b.N; i++ {
 		P.Merge(P1)
+	}
+
+}
+
+func BenchmarkFidMin(b *testing.B) {
+	P1 := S2.New()
+	for c, _ := range test[1].values {
+		P1.Enqueue(c)
+
+	}
+	for i := 0; i < b.N; i++ {
+		P1.FindMin()
 	}
 
 }

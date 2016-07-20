@@ -1,0 +1,8 @@
+PASS
+BenchmarkEnqueue-4	500000000	         3.91 ns/op	 511.86 MB/s	       0 B/op	       0 allocs/op
+BenchmarkDequeue-4	2000000000	         1.08 ns/op	1846.09 MB/s	       0 B/op	       0 allocs/op
+BenchmarkIsEmpty-4	2000000000	         0.70 ns/op	2863.12 MB/s	       0 B/op	       0 allocs/op
+BenchmarkIsFull-4 	2000000000	         1.05 ns/op	1896.77 MB/s	       0 B/op	       0 allocs/op
+BenchmarkMerge-4  	 5000000	       260 ns/op	   7.69 MB/s	     896 B/op	       1 allocs/op
+BenchmarkFidMin-4 	2000000000	         1.28 ns/op	       0 B/op	       0 allocs/op
+ok  	command-line-arguments	12.597s

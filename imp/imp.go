@@ -63,6 +63,10 @@ func (N *Priorityqueue) Dequeue() int {
 
 }
 
+func (N *Priorityqueue) FindMin() int {
+	return N.intPq[N.itemCount-1]
+}
+
 /* Method implementation for checking whether PQ is empty or not*/
 
 func (N *Priorityqueue) IsEmpty() bool {
